@@ -1,8 +1,18 @@
 <html>
+
 <head>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="js/stopWatch.js"></script>
 </head>
-test
-<body></body>
+
+<body>
+    <span id="timer">00:00:00.000</span>
+    <br/>
+    <button onclick="Vsw.start()">Start/Pause</button>
+    <button onclick="Vsw.log()">Log</button>
+    <button onclick="Vsw.clear()">Clear</button>
+    <div id="logger"></div>
+
+</body>
+
 </html>
