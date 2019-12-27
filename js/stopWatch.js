@@ -33,13 +33,17 @@ var Vsw = {
     _intervalStop: function () {
         clearInterval(this._intervalVar);
         this._intervalVar = null;
-        Vsw._miliseconds = Vsw._getTimeEllapsed();
+        Vsw._miliseconds += Vsw._getTimeEllapsed();
     },
     _setTimerText: function (time) {
         $('#timer').text(time);
     },
     _setLoggerText: function (time) {
         $('#logger').append('<br/>' + time);
+    },
+    _initText: function (time) {
+        this._setTimerText('00:00:00.000');
+        $('#logger').text('');
     },
     log: function () {
         this._setLoggerText(Vsw._getFormatedTime());
@@ -51,11 +55,36 @@ var Vsw = {
         }
         this._intervalStop();
     },
+    pause: function () {
+        this._intervalStop();
+    },
     clear: function () {
         this._miliseconds = 0;
         this._startTime = new Date();
         this._intervalStop();
-        this._setTimerText('00:00:00.000');
-        this._setLoggerText('');
+        this._initText();
     }
 }
+
+var VswVoiceExtention = {
+    init : function () {
+        if (annyang) {
+            console.log('test');
+            // Let's define a command.
+            var commands = {
+              'go': function() { Vsw.start(); },
+              'stop': function() { Vsw.clear() },
+              'clear': function() { Vsw.clear() },
+              'log': function() { Vsw.log() },
+            };
+          
+            // Add our commands to annyang
+            annyang.addCommands(commands);
+          
+            // Start listening.
+            annyang.start();
+        }
+    }
+}
+
+VswVoiceExtention.init();
