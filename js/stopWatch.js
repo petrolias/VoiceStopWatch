@@ -65,26 +65,3 @@ var Vsw = {
         this._initText();
     }
 }
-
-var VswVoiceExtention = {
-    init : function () {
-        if (annyang) {
-            console.log('test');
-            // Let's define a command.
-            var commands = {
-              'go': function() { Vsw.start(); },
-              'stop': function() { Vsw.clear() },
-              'clear': function() { Vsw.clear() },
-              'log': function() { Vsw.log() },
-            };
-          
-            // Add our commands to annyang
-            annyang.addCommands(commands);
-          
-            // Start listening.
-            annyang.start();
-        }
-    }
-}
-
-VswVoiceExtention.init();
