@@ -1,6 +1,7 @@
 //https://codeburst.io/html5-speech-recognition-api-670846a50e92
 var VswCommands = {
     _commandEvent: function (command) {
+        console.log(command);
         command = command.toLowerCase();
         switch (command) {
             case 'start':
@@ -17,6 +18,7 @@ var VswCommands = {
                 Vsw.clear();
                 break;
             case 'log':
+            case 'καθάρισε':
                 Vsw.log();
                 break;
             default:
